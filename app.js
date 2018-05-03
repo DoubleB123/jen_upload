@@ -16,7 +16,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'public/html', 'index.html')));
 
-app.post('/fileupload', upload.single('testfile'), (req, res) => {
+app.post('/api/fileupload', upload.single('testfile'), (req, res) => {
   const file = req.file;
   console.log('request to upload');
   console.log(file);
