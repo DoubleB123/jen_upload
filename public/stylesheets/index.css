@@ -1,0 +1,11 @@
+.upload {
+    margin: auto;
+    width: 50%;
+    text-align: center;
+}
+
+.loading {
+    display: none;
+    text-align: center;
+    padding: 1em;
+}

@@ -17,12 +17,17 @@
 </head>
 
 <body>
-    <h1>Jen's File Uploader</h1>
-    <form id='fileform' enctype='multipart/form-data'>
-        <input type='file' name='testfile'>
-        <button type='submit'>Upload</button> 
-    </form>
-    <h4>Max File Size of 50 MB</h4>
+    <div class='upload'>
+        <h1>File Uploader</h1>
+        <form id='fileform' enctype='multipart/form-data'>
+            <input type='file' name='testfile'>
+            <button type='submit'>Upload</button> 
+        </form>
+        <h4>Max File Size of 50 MB</h4>
+    </div>
+    <div class='loading'>
+        <h2 class='loading-header'>Uploading</h2>
+    </div>
 
 </body>
 </html>
