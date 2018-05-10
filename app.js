@@ -3,6 +3,8 @@ const multer = require('multer');
 const cors = require('cors');
 const fs = require('fs');
 const path = require('path');
+
+const PythonShell = require('python-shell');
 // setup
 const UPLOAD_PATH = 'uploads';
 
@@ -18,9 +20,24 @@ app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'public/html', 'ind
 
 app.post('/api/fileupload', upload.single('testfile'), (req, res) => {
   const file = req.file;
-  console.log('request to upload');
   console.log(file);
-  res.sendStatus(200);
+  // do python stuff
+  const pyOptions = {
+    mode: 'text',
+    pythonPath: '/usr/bin/python3',
+    scriptPath: path.join(__dirname, 'public/python'),
+    args: [file.originalname]
+  }
+  PythonShell.run('test.py', pyOptions, (err, results) => {
+    if (err) {
+      console.log(err);
+      res.status(500).send(err)
+    }
+    else {
+      console.log(results);
+      res.status(200).send(results[0])
+    }
+  })
 });
 
 

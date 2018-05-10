@@ -1,7 +1,7 @@
 $(document).ready(function(){
 
   $('#fileform').submit(function(e) {
-    const uploadText = 'Uploading';
+    const uploadText = 'Processing';
 
     $('.loading-header').text(uploadText);
     e.preventDefault();
@@ -18,7 +18,6 @@ $(document).ready(function(){
         $('.loading-header').text(uploadText);
         dots = 0;
       }
-
     }, 200)
 
     $.ajax({
@@ -28,8 +27,11 @@ $(document).ready(function(){
         cache: false,
         contentType: false,
         processData: false,
-        success: () => {
-          console.log("worked");
+        success: (result) => {
+          console.log('worked');
+          console.log(result);
+          $('#score').text(result);
+          $('.score').show()
           $('.loading').hide();
           clearInterval(interval);
         },

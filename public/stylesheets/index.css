@@ -9,3 +9,9 @@
     text-align: center;
     padding: 1em;
 }
+
+.score {
+    display: none;
+    text-align: center;
+    padding: 1em;
+}
