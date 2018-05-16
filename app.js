@@ -9,13 +9,14 @@ const PythonShell = require('python-shell');
 const UPLOAD_PATH = 'uploads';
 
 const storage = multer.diskStorage({
-  destination: function(req, file, cb){
-    cb(null, '/uploads')
+  destination: function(req, file, cb) {
+    cb(null, './uploads/');
   },
   filename: function(req, file, cb) {
-    cb(null, file.originalname)
+    cb(null, file.originalname);
   }
 });
+
 const upload = multer({storage: storage, limits: {fileSize: 1000*1000*50}}); // multer configuration
 
 // app
@@ -33,7 +34,7 @@ app.post('/api/fileupload', upload.single('testfile'), (req, res) => {
     mode: 'text',
     pythonPath: '/usr/bin/python3',
     scriptPath: path.join(__dirname, 'public/python'),
-    args: [file.filename]
+    args: [file.originalname]
   }
   PythonShell.run('test.py', pyOptions, (err, results) => {
     if (err) {
