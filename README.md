@@ -1,4 +1,4 @@
-#Installation
+# Installation
 
 1) Clone the repo and then cd into it
 2) Run npm install
