@@ -8,8 +8,15 @@ const PythonShell = require('python-shell');
 // setup
 const UPLOAD_PATH = 'uploads';
 
-const storage = multer.memoryStorage();
-const upload = multer({dest: 'uploads/', limits: {fileSize: 1000*1000*50}}); // multer configuration
+const storage = multer.diskStorage({
+  destination: function(req, file, cb){
+    cb(null, '/uploads')
+  },
+  filename: function(req, file, cb) {
+    cb(null, file.originalname)
+  }
+});
+const upload = multer({storage: storage, limits: {fileSize: 1000*1000*50}}); // multer configuration
 
 // app
 const app = express();
