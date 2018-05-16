@@ -6,6 +6,7 @@ $(document).ready(function(){
     $('.loading-header').text(uploadText);
     e.preventDefault();
     $('.loading').show();
+    $('.score').hide()
 
     let dots = 0;
     const interval = setInterval(() => {
